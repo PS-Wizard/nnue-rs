@@ -1,3 +1,5 @@
+#![allow(dead_code, unused)]
+mod parser;
 pub mod types;
 
 struct Game {
