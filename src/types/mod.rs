@@ -1,4 +1,4 @@
 pub mod bitboard;
-mod network;
+pub mod network;
 mod piece;
 pub mod utils;

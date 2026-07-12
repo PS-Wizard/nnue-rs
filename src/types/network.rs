@@ -7,13 +7,13 @@ pub struct NetworkSpec {
     pub threat_input_dims: Option<usize>,
 }
 
-enum NetworkKind {
+pub enum NetworkKind {
     Small(String),
     Big(String),
 }
 
 impl NetworkSpec {
-    fn new(kind: NetworkKind) -> NetworkSpec {
+    pub fn new(kind: NetworkKind) -> NetworkSpec {
         match kind {
             NetworkKind::Small(path) => NetworkSpec {
                 path,
@@ -62,7 +62,7 @@ pub struct DenseLayer {
     pub weights: Vec<i32>,
 }
 
-struct Network {
+pub struct Network {
     pub header: NetworkHeader,
     pub kind: NetworkKind,
     pub transformer: FeatureTransformer,

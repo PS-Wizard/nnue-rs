@@ -1,4 +1,5 @@
 use super::utils::notation_to_index;
+use anyhow::{Result, anyhow};
 use std::fmt::{self, Display};
 
 #[derive(Default)]
@@ -13,14 +14,14 @@ impl Bboard {
         self.0
     }
 
-    pub fn set_bits(&mut self, squares: &str) -> Result<(), String> {
+    pub fn set_bits(&mut self, squares: &str) -> Result<()> {
         for square in squares
             .split(',')
             .map(str::trim)
             .filter(|square| !square.is_empty())
         {
             let index =
-                notation_to_index(square).ok_or_else(|| format!("invalid square: {square}"))?;
+                notation_to_index(square).ok_or_else(|| anyhow!("invalid square: {square}"))?;
             self.0 |= 1u64 << index;
         }
 
@@ -72,7 +73,10 @@ mod tests {
     fn set_bits_rejects_invalid_squares() {
         let mut board = Bboard::new();
 
-        assert_eq!(board.set_bits("z9").unwrap_err(), "invalid square: z9");
+        assert_eq!(
+            board.set_bits("z9").unwrap_err().to_string(),
+            "invalid square: z9"
+        );
     }
     #[test]
     fn visual_prints_board() {
