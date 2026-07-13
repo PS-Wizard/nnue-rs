@@ -59,7 +59,7 @@ pub struct LayerStack {
 
 pub struct DenseLayer {
     pub biases: Vec<i32>,
-    pub weights: Vec<i32>,
+    pub weights: Vec<i8>,
 }
 
 pub struct Network {
