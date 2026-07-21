@@ -12,9 +12,6 @@ use crate::{
 };
 use anyhow::Context;
 
-mod dense_network;
-mod feature_transformer;
-mod header;
 mod reader;
 
 pub fn read_nnue(spec: NetworkSpec) -> anyhow::Result<Network> {
